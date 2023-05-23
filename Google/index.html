@@ -1,0 +1,86 @@
+<html>
+<head>
+    <link rel="stylesheet" href="First.css">
+    <title>Sign In</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <form class="form" action="first.jsp" method="post" >
+            <img src="assets/logo.gif">
+            <p class="signin">Sign in</p>
+            <p class="account">Use your Google Account</p>
+			
+			<div class="input-field">
+				<!--<input type="email" name="email" placeholder="Email or phone" required>-->
+				<input type="text" id="email" name="email" placeholder="Email or phone"> 
+			</div>
+			
+			<div class="input-field">
+				<input type="password" id="password" name="pass" placeholder="Password">				
+			</div>
+			
+			<div>
+				<input type="checkbox" onclick="showpassword()" id="checkbox" ><label id="show">Show password</label>
+				<!--<input type="pass" name="pass" placeholder="Password" required>-->
+			</div>
+            <p><a href="#">Forgot email?</a></p>
+            <p class="notyour">Not your computer?Use Guest mode to sign in privately.</p><button type="button" class="learn">Learn more</button>
+            <section>
+				<a href="register.html" class="create">Create Account</a>
+                <input type="submit" id="submit" class="next" value="submit" onclick="checkData()">
+            </section>
+        </form>
+    </div>
+</body>
+<script>
+
+	const email = document.getElementById("email");
+	const pass = document.getElementById("password");
+	function checkData(){
+	
+		const emailvalue=email.value.trim();
+		const passvalue=pass.value.trim();
+		 
+		if(emailvalue==""){
+			setError(email,"E-mail cannot be empty");
+		}
+		else{
+			setSuccess(email);
+		}
+		
+		if(passvalue==""){
+			setError(pass,"Password cannot be empty");
+		}
+		else{
+			setSuccess(pass);
+		}
+		
+	 }
+	function setError(em,msg){
+		const parent = em.parentElement;
+		parent.className="input-field error";
+		const span = parent.querySelector("span");
+		const fa=parent.querySelector(".fa");
+		span.innerText=msg;
+		fa.className="fa fa-exclamation-triangle";
+	}
+	function setSuccess(em){
+		const parent = em.parentElement;
+		parent.className="input-field success";
+		const fa=parent.querySelector(".fa");
+		fa.className="fa fa-check-circle";
+	}
+	
+	function showpassword(){
+		var a=document.getElementById("password");
+			if(a.type == "password")
+			{
+				a.type="text";
+			}
+			else{
+				a.type="password";
+			}
+	}
+</script>
+</html>
